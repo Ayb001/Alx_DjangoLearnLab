@@ -19,12 +19,15 @@ def list_books(request):
 
 # Class-based view to display library details
 class LibraryDetailView(DetailView):
-    """
-    Class-based view that displays details for a specific library
-    """
     model = Library
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['books'] = self.object.book_set.all()
+        return context
+
 
 # User Registration View
 def register(request):
