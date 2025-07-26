@@ -77,7 +77,7 @@ def member_view(request):
     return render(request, 'relationship_app/member_view.html')
 
 # Permission-based views for book operations
-@permission_required('relationship_app.canaddbook', raise_exception=True)
+@permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
     """
     View to add a new book - requires can_add_book permission
@@ -87,7 +87,7 @@ def add_book(request):
         pass
     return render(request, 'relationship_app/add_book.html')
 
-@permission_required('relationship_app.canchangebook', raise_exception=True)
+@permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request, pk):
     """
     View to edit a book - requires can_change_book permission
@@ -101,7 +101,7 @@ def edit_book(request, pk):
     except Book.DoesNotExist:
         return HttpResponse("Book not found", status=404)
 
-@permission_required('relationship_app.candeletebook', raise_exception=True)
+@permission_required('relationship_app.can_delete_book', raise_exception=True)
 def delete_book(request, pk):
     """
     View to delete a book - requires can_delete_book permission
