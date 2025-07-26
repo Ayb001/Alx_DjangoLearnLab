@@ -3,9 +3,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from . import views
 
 urlpatterns = [
-    # Book listing views
-    path('books/', views.list_books, name='list_books'),
-    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
+# Function-based view to list all books
+path('books/', views.list_books, name='list_books'),
+
+# Class-based view for library details
+path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
+
     
     # Authentication URLs
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
